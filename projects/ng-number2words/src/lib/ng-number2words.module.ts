@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
+import { ToWordsPipe } from './to-words.pipe';
 
 @NgModule({
-  declarations: [],
+  declarations: [ToWordsPipe],
   imports: [
   ],
   exports: []
