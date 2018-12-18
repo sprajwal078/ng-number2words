@@ -16,6 +16,14 @@
     "lib": [
       "es2018",
       "dom"
-    ]
+    ],
+    "paths": {
+      "ng-number2words": [
+        "dist/ng-number2words"
+      ],
+      "ng-number2words/*": [
+        "dist/ng-number2words/*"
+      ]
+    }
   }
 }

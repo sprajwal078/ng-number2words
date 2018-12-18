@@ -129,6 +129,41 @@
           }
         }
       }
+    },
+    "ng-number2words": {
+      "root": "projects/ng-number2words",
+      "sourceRoot": "projects/ng-number2words/src",
+      "projectType": "library",
+      "prefix": "n2w",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/ng-number2words/tsconfig.lib.json",
+            "project": "projects/ng-number2words/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/ng-number2words/src/test.ts",
+            "tsConfig": "projects/ng-number2words/tsconfig.spec.json",
+            "karmaConfig": "projects/ng-number2words/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/ng-number2words/tsconfig.lib.json",
+              "projects/ng-number2words/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
     }
   },
   "defaultProject": "ng-number2word-demo"
