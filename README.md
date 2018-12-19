@@ -34,8 +34,9 @@ then use `toWords` pipe wherever required
 will output `one hundred twenty three`
 
 ## TODO
-- Enable Hindu Arabic system
+- Support decimal input
 - Enable Languages for Hindu Arabic system
+
 
 ## Note
 This project is build using angular library generator. You can find the source files for the module in `/projects/ng-number2words`
