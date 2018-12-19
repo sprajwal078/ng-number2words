@@ -203,8 +203,7 @@ class NgNumber2wordsModule {
 NgNumber2wordsModule.decorators = [
     { type: NgModule, args: [{
                 declarations: [ToWordsPipe],
-                imports: [],
-                exports: []
+                exports: [ToWordsPipe]
             },] }
 ];
 

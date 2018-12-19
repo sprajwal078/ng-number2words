@@ -245,8 +245,7 @@ var NgNumber2wordsModule = /** @class */ (function () {
     NgNumber2wordsModule.decorators = [
         { type: NgModule, args: [{
                     declarations: [ToWordsPipe],
-                    imports: [],
-                    exports: []
+                    exports: [ToWordsPipe]
                 },] }
     ];
     return NgNumber2wordsModule;
