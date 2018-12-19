@@ -52,6 +52,10 @@ export class ToHinduArabicWordsPipe implements PipeTransform {
     },
     {
       min: WordValues.lakh,
+      max: WordValues.crore
+    },
+    {
+      min: WordValues.crore,
       max: WordValues.arab
     },
     {
@@ -60,7 +64,7 @@ export class ToHinduArabicWordsPipe implements PipeTransform {
     },
     {
       min: WordValues.kharab,
-      max: 99 * WordValues.kharab
+      max: 100 * WordValues.kharab
     },
   ];
 
@@ -80,7 +84,7 @@ export class ToHinduArabicWordsPipe implements PipeTransform {
   }
 
   convertToWord(number, words = [], ignoreZero = false) {
-    if (number > (99 * WordValues.kharab)) {
+    if (number > (100 * WordValues.kharab)) {
       console.error(`value not supported: ${number} exceeds the max value which is 999 trillion`);
       return [];
     }
