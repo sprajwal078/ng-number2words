@@ -217,6 +217,6 @@ NgNumber2wordsModule.decorators = [
  * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
-export { NgNumber2wordsModule, ToWordsPipe as ɵa };
+export { NgNumber2wordsModule, ToWordsPipe };
 
 //# sourceMappingURL=ng-number2words.js.map

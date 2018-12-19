@@ -37,5 +37,5 @@ will output `one hundred twenty three`
 - Enable Hindu Arabic system
 - Enable Languages for Hindu Arabic system
 
-## Note
+##Note
 This project is build using angular library generator. You can find the source files for the module in `/projects/ng-number2words`

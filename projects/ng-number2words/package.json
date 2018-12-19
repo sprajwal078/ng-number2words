@@ -1,18 +1,22 @@
 {
   "name": "ng-number2words",
-  "description": "Contains Angular pipe to convert numbers into words",
+  "description": "Angular pipe that converts number to words",
   "author": "Prajwal Simkhada",
-  "version": "0.0.1",
+  "version": "0.1.1",
   "peerDependencies": {
     "@angular/common": "^7.0.0",
     "@angular/core": "^7.0.0"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sprajwal078/ng-number2words"
+  },
   "license": "MIT",
-  "tags": [
+  "keywords": [
     "angular",
     "number",
+    "words",
     "string",
-    "pipe",
-    "words"
+    "pipe"
   ]
 }
