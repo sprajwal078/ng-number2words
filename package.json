@@ -11,6 +11,7 @@
     "package": "npm run build-lib && npm run copy-readme && npm run npm-pack",
     "publish": "npm publish dist/ng-number2words",
     "test": "ng test",
+    "test-lib": "ng test ng-number2words",
     "lint": "ng lint",
     "e2e": "ng e2e"
   },
