@@ -1,11 +1,13 @@
 {
   "name": "ng-number2word-demo",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
     "build-lib": "ng build ng-number2words",
+    "npm-pack": "cd dist/ng-number2words && npm pack",
+    "package": "npm run build-lib && npm run npm-pack",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
