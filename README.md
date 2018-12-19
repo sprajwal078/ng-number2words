@@ -33,6 +33,12 @@ then use `toWords` pipe wherever required
 ```
 will output `one hundred twenty three`
 
+## Hindu-Arabic System
+```html
+<div>{{235678943226 | toWords}}</div>
+```
+will output `two kharab thirty five arab sixty seven crore eighty nine lakh forty three thousand two hundred twenty six`
+
 ## TODO
 - Support decimal input
 - Enable Languages for Hindu Arabic system
