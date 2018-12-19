@@ -261,6 +261,6 @@ var NgNumber2wordsModule = /** @class */ (function () {
  * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
-export { NgNumber2wordsModule, ToWordsPipe as ɵa };
+export { NgNumber2wordsModule, ToWordsPipe };
 
 //# sourceMappingURL=ng-number2words.js.map

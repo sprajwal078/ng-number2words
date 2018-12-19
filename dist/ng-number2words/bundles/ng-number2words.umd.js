@@ -337,7 +337,7 @@
      */
 
     exports.NgNumber2wordsModule = NgNumber2wordsModule;
-    exports.ɵa = ToWordsPipe;
+    exports.ToWordsPipe = ToWordsPipe;
 
     Object.defineProperty(exports, '__esModule', { value: true });
 
