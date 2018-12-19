@@ -4,6 +4,6 @@ import { ToHinduArabicWordsPipe } from './to-hindu-arabic-words.pipe';
 
 @NgModule({
   declarations: [ToWordsPipe, ToHinduArabicWordsPipe],
-  exports: [ToWordsPipe]
+  exports: [ToWordsPipe, ToHinduArabicWordsPipe]
 })
 export class NgNumber2wordsModule { }

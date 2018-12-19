@@ -198,12 +198,212 @@ ToWordsPipe.decorators = [
  * @fileoverview added by tsickle
  * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
+/** @enum {number} */
+const WordValues$1 = {
+    hundred: 100,
+    thousand: 1000,
+    lakh: 100000,
+    crore: 10000000,
+    arab: 1000000000,
+    kharab: 100000000000,
+};
+WordValues$1[WordValues$1.hundred] = 'hundred';
+WordValues$1[WordValues$1.thousand] = 'thousand';
+WordValues$1[WordValues$1.lakh] = 'lakh';
+WordValues$1[WordValues$1.crore] = 'crore';
+WordValues$1[WordValues$1.arab] = 'arab';
+WordValues$1[WordValues$1.kharab] = 'kharab';
+/** @type {?} */
+const SUB_TWENTIES_MAPPING$1 = {
+    0: 'zero',
+    1: 'one',
+    2: 'two',
+    3: 'three',
+    4: 'four',
+    5: 'five',
+    6: 'six',
+    7: 'seven',
+    8: 'eight',
+    9: 'nine',
+    10: 'ten',
+    11: 'eleven',
+    12: 'twelve',
+    13: 'thirteen',
+    14: 'fourteen',
+    15: 'fifteen',
+    16: 'sixteen',
+    17: 'seventeen',
+    18: 'eighteen',
+    19: 'nineteen',
+    20: 'twenty'
+};
+/** @type {?} */
+const TENTH_MAPPING$1 = {
+    10: 'ten',
+    20: 'twenty',
+    30: 'thirty',
+    40: 'forty',
+    50: 'fifty',
+    60: 'sixty',
+    70: 'seventy',
+    80: 'eighty',
+    90: 'ninety',
+    100: 'hundred',
+    1000: 'thousand',
+    100000: 'lakh',
+    10000000: 'crore',
+    1000000000: 'arab',
+    100000000000: 'kharab',
+};
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class ToHinduArabicWordsPipe {
+    constructor() {
+        this.subHundredRanges = [
+            {
+                min: 20,
+                max: 30
+            },
+            {
+                min: 30,
+                max: 40
+            },
+            {
+                min: 40,
+                max: 50
+            },
+            {
+                min: 50,
+                max: 60
+            },
+            {
+                min: 60,
+                max: 70
+            },
+            {
+                min: 70,
+                max: 80
+            },
+            {
+                min: 80,
+                max: 90
+            },
+            {
+                min: 90,
+                max: 100
+            }
+        ];
+        this.ranges = [
+            {
+                min: WordValues$1.hundred,
+                max: WordValues$1.thousand
+            },
+            {
+                min: WordValues$1.thousand,
+                max: WordValues$1.lakh
+            },
+            {
+                min: WordValues$1.lakh,
+                max: WordValues$1.crore
+            },
+            {
+                min: WordValues$1.crore,
+                max: WordValues$1.arab
+            },
+            {
+                min: WordValues$1.arab,
+                max: WordValues$1.kharab
+            },
+            {
+                min: WordValues$1.kharab,
+                max: 100 * WordValues$1.kharab
+            },
+        ];
+    }
+    /**
+     * @param {?} value
+     * @return {?}
+     */
+    transform(value) {
+        if (typeof (value) !== 'number') {
+            if (isNaN(+value)) {
+                console.error(`value not number: ${value} is not a number. Please ensure the value is a number`);
+                return null;
+            }
+            console.warn(`'${value}' converted to number: for best results, please ensure you provide number instead of string`);
+            value = +value;
+        }
+        /** @type {?} */
+        const words = this.convertToWord(value);
+        return words.join(' ');
+    }
+    /**
+     * @param {?} number
+     * @param {?=} words
+     * @param {?=} ignoreZero
+     * @return {?}
+     */
+    convertToWord(number, words = [], ignoreZero = false) {
+        if (number > (100 * WordValues$1.kharab)) {
+            console.error(`value not supported: ${number} exceeds the max value which is 999 trillion`);
+            return [];
+        }
+        if (number < 0) {
+            words.push('minus');
+            return this.convertToWord(Math.abs(number), words);
+        }
+        if (number <= 20) {
+            if (number === 0 && ignoreZero) {
+                return words;
+            }
+            words.push(SUB_TWENTIES_MAPPING$1[number]);
+        }
+        for (const minMax of this.subHundredRanges) {
+            if (number >= minMax.min && number < minMax.max) {
+                words.push(...this.convertReminderToWord(number, minMax.min));
+                break;
+            }
+        }
+        for (const minMax of this.ranges) {
+            if (number >= minMax.min && number < minMax.max) {
+                /** @type {?} */
+                const prefix = this.convertToWord(+Math.floor((number / minMax.min)).toFixed());
+                words.push(...prefix, TENTH_MAPPING$1[minMax.min]);
+                return this.convertToWord(number % minMax.min, words, true);
+            }
+        }
+        return words;
+    }
+    /**
+     * @param {?} value
+     * @param {?} number
+     * @return {?}
+     */
+    convertReminderToWord(value, number) {
+        /** @type {?} */
+        const reminder = value % number;
+        return reminder ? [TENTH_MAPPING$1[number], SUB_TWENTIES_MAPPING$1[reminder]] : [TENTH_MAPPING$1[number]];
+    }
+}
+ToHinduArabicWordsPipe.decorators = [
+    { type: Pipe, args: [{
+                name: 'toHinduArabicWords'
+            },] }
+];
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
 class NgNumber2wordsModule {
 }
 NgNumber2wordsModule.decorators = [
     { type: NgModule, args: [{
-                declarations: [ToWordsPipe],
-                exports: [ToWordsPipe]
+                declarations: [ToWordsPipe, ToHinduArabicWordsPipe],
+                exports: [ToWordsPipe, ToHinduArabicWordsPipe]
             },] }
 ];
 
@@ -217,6 +417,6 @@ NgNumber2wordsModule.decorators = [
  * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
-export { NgNumber2wordsModule, ToWordsPipe };
+export { NgNumber2wordsModule, ToWordsPipe, ToHinduArabicWordsPipe };
 
 //# sourceMappingURL=ng-number2words.js.map
