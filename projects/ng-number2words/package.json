@@ -17,6 +17,8 @@
     "number",
     "words",
     "string",
-    "pipe"
+    "pipe",
+    "number to words",
+    "number to string"
   ]
 }
