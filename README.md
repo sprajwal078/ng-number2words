@@ -29,13 +29,13 @@ export class AppModule { }
 
 then use `toWords` pipe wherever required
 ```html
-<div>{{123 | toWords}}</div>
+<div>{{14600728195 | toWords}}</div>
 ```
-will output `one hundred twenty three`
+will output `fourteen billion six hundred million seven hundred twenty eight thousand one hundred ninety five`
 
 ## Hindu-Arabic System
 ```html
-<div>{{235678943226 | toWords}}</div>
+<div>{{235678943226 | toHinduArabicWords}}</div>
 ```
 will output `two kharab thirty five arab sixty seven crore eighty nine lakh forty three thousand two hundred twenty six`
 
