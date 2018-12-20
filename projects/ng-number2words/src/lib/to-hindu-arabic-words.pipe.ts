@@ -1,6 +1,7 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import { WordValues, SUB_TWENTIES_MAPPING, TENTH_MAPPING } from './hindu-arabic-word-map';
 import { MinMax } from './types';
+import { SUB_HUNDRED_NP, TENTH_MAPPING_NP } from './language-mapping/nepali';
 
 @Pipe({
   name: 'toHinduArabicWords'
@@ -68,7 +69,7 @@ export class ToHinduArabicWordsPipe implements PipeTransform {
     },
   ];
 
-  transform(value: any): any {
+  transform(value: number | string, language = 'en'): any {
     if (typeof (value) !== 'number') {
       if (isNaN(+value)) {
         console.error(`value not number: ${value} is not a number. Please ensure the value is a number`);
@@ -79,11 +80,16 @@ export class ToHinduArabicWordsPipe implements PipeTransform {
       );
       value = +value;
     }
-    const words = this.convertToWord(value);
+    let words: string[] = [];
+    if (language === 'en') {
+      words = this.convertToWord(value);
+    } else {
+      words = this.convertToLanguage(value, language);
+    }
     return words.join(' ');
   }
 
-  convertToWord(number, words = [], ignoreZero = false) {
+  convertToWord(number: number, words = [], ignoreZero = false, lang = 'en'): string[] {
     if (number > (100 * WordValues.kharab)) {
       console.error(`value not supported: ${number} exceeds the max value which is 999 trillion`);
       return [];
@@ -116,9 +122,41 @@ export class ToHinduArabicWordsPipe implements PipeTransform {
     return words;
   }
 
-  convertReminderToWord(value, number) {
+  convertReminderToWord(value: number, number: number): string[] {
     const reminder = value % number;
     return reminder ? [TENTH_MAPPING[number], SUB_TWENTIES_MAPPING[reminder]] : [TENTH_MAPPING[number]];
+  }
+
+  convertToLanguage(value: number, lang: string): string[] {
+    switch (lang) {
+      case 'np':
+        return this.convertToNepali(value);
+    }
+  }
+
+  convertToNepali(value: number, words = [], ignoreZero = false): string[] {
+    if (value > (100 * WordValues.kharab)) {
+      console.error(`value not supported: ${value} exceeds the max value which is 999 trillion`);
+      return [];
+    }
+    if (value < 0) {
+      words.push('माइनस');
+      return this.convertToWord(Math.abs(value), words);
+    }
+    if (value < 100) {
+      if (value === 0 && ignoreZero) {
+        return words;
+      }
+      words.push(SUB_HUNDRED_NP[value]);
+    }
+    for (const minMax of this.ranges) {
+      if (value >= minMax.min && value < minMax.max) {
+        const prefix = this.convertToNepali(+Math.floor((value / minMax.min)).toFixed());
+        words.push(...prefix, TENTH_MAPPING_NP[minMax.min]);
+        return this.convertToNepali(value % minMax.min, words, true);
+      }
+    }
+    return words;
   }
 
 }
