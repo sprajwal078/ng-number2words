@@ -62,7 +62,7 @@ export class ToWordsPipe implements PipeTransform {
     },
   ];
 
-  transform(value: any, args?: any): any {
+  transform(value: number | string): any {
     if (typeof (value) !== 'number') {
       if (isNaN(+value)) {
         console.error(`value not number: ${value} is not a number. Please ensure the value is a number`);
@@ -73,11 +73,17 @@ export class ToWordsPipe implements PipeTransform {
       );
       value = +value;
     }
-    const words = this.convertToWord(value);
+    const words = this.convertToWord(Math.floor(value));
+    // convert decimal points
+    const decimal = /\.\d+/.exec('' + value);
+    if (decimal) {
+      // the decimal value is stored at the 0 position of the result
+      words.push(...this.convertDecimalToWords(decimal[0]));
+    }
     return words.join(' ');
   }
 
-  convertToWord(number, words = [], ignoreZero = false) {
+  convertToWord(number: number, words: string[] = [], ignoreZero = false): string[] {
     if (number > (999 * WordValues.trillion)) {
       console.error(`value not supported: ${number} exceeds the max value which is 999 trillion`);
       return [];
@@ -102,7 +108,7 @@ export class ToWordsPipe implements PipeTransform {
 
     for (const minMax of this.ranges) {
       if (number >= minMax.min && number < minMax.max) {
-        const prefix = this.convertToWord(+Math.floor((number / minMax.min)).toFixed());
+        const prefix = this.convertToWord(Math.floor(number / minMax.min));
         words.push(...prefix, TENTH_MAPPING[minMax.min]);
         return this.convertToWord(number % minMax.min, words, true);
       }
@@ -110,9 +116,19 @@ export class ToWordsPipe implements PipeTransform {
     return words;
   }
 
-  convertReminderToWord(value, number) {
-    const reminder = value % number;
-    return reminder ? [TENTH_MAPPING[number], SUB_TWENTIES_MAPPING[reminder]] : [TENTH_MAPPING[number]];
+  convertReminderToWord(value: number, divisor: number) {
+    const reminder = value % divisor;
+    return reminder ? [TENTH_MAPPING[divisor], SUB_TWENTIES_MAPPING[reminder]] : [TENTH_MAPPING[divisor]];
+  }
+
+  convertDecimalToWords(decimal: string): string[] {
+    const decimalValues = decimal.split('');
+    return decimalValues.map(dec => {
+      if (dec === '.') {
+        return 'point';
+      }
+      return SUB_TWENTIES_MAPPING[dec];
+    });
   }
 
 }

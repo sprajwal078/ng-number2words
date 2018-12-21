@@ -268,4 +268,18 @@ describe('ToWordsPipe', () => {
       expect(pipe.transform(1917265263765432)).toMatch('');
     });
   });
+
+  describe('decimal inputs', () => {
+    it('should output one point one two three', () => {
+      expect(pipe.transform(1.123)).toMatch('one point one two three');
+    });
+
+    it('should output two point four five six', () => {
+      expect(pipe.transform(2.456)).toMatch('two point four five six');
+    });
+
+    it('should output five point zero nine eight seven', () => {
+      expect(pipe.transform(5.0987)).toMatch('five point zero nine eight seven');
+    });
+  });
 });

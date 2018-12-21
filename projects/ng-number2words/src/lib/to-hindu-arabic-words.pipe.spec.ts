@@ -251,7 +251,7 @@ describe('ToHinduArabicWordsPipe', () => {
     });
   });
 
-  fdescribe('Language', () => {
+  describe('Language', () => {
     describe('NP', () => {
       describe('0 - 10', () => {
         it('0 should be शून्य', () => {
@@ -667,11 +667,10 @@ describe('ToHinduArabicWordsPipe', () => {
           expect(pipe.transform(8765432109876, 'np'))
             .toMatch('सत्तास्सी खर्ब पैंसठ्ठी अर्ब त्रिचालीस करोड एक्काइस लाख नौ हजार आठ सय छयत्तर');
         });
-
-      it(`10000000000000 should be empty`, () => {
-        expect(pipe.transform(10000000000000, 'np')).toMatch('');
+        it('10000000000000 should be empty', () => {
+          expect(pipe.transform(10000000000000, 'np')).toMatch('');
+        });
       });
-
     });
   });
 });

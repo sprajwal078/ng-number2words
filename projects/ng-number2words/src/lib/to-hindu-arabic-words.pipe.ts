@@ -91,7 +91,7 @@ export class ToHinduArabicWordsPipe implements PipeTransform {
 
   convertToWord(number: number, words = [], ignoreZero = false, lang = 'en'): string[] {
     if (number > (100 * WordValues.kharab)) {
-      console.error(`value not supported: ${number} exceeds the max value which is 999 trillion`);
+      console.error(`value not supported: ${number} exceeds the max value which is 99 kharabs`);
       return [];
     }
     if (number < 0) {
@@ -122,9 +122,9 @@ export class ToHinduArabicWordsPipe implements PipeTransform {
     return words;
   }
 
-  convertReminderToWord(value: number, number: number): string[] {
-    const reminder = value % number;
-    return reminder ? [TENTH_MAPPING[number], SUB_TWENTIES_MAPPING[reminder]] : [TENTH_MAPPING[number]];
+  convertReminderToWord(value: number, divisor: number): string[] {
+    const reminder = value % divisor;
+    return reminder ? [TENTH_MAPPING[divisor], SUB_TWENTIES_MAPPING[reminder]] : [TENTH_MAPPING[divisor]];
   }
 
   convertToLanguage(value: number, lang: string): string[] {
@@ -136,7 +136,7 @@ export class ToHinduArabicWordsPipe implements PipeTransform {
 
   convertToNepali(value: number, words = [], ignoreZero = false): string[] {
     if (value > (100 * WordValues.kharab)) {
-      console.error(`value not supported: ${value} exceeds the max value which is 999 trillion`);
+      console.error(`value not supported: ${value} exceeds the max value which is 99 kharabs`);
       return [];
     }
     if (value < 0) {
