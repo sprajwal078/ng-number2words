@@ -62,10 +62,8 @@ will output
 `छब्बीस दशमलब पाँच चार`
 
 ## TODO
-- Support decimal input
 - Enable support additional languages
 - Enable currency conversion
-
 
 ## Note
 This project is build using angular library generator. You can find the source files for the module in `/projects/ng-number2words`
