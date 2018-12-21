@@ -2,7 +2,7 @@
   "name": "ng-number2words",
   "description": "Angular pipe that converts number to words",
   "author": "Prajwal Simkhada",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "peerDependencies": {
     "@angular/common": "^7.0.0",
     "@angular/core": "^7.0.0"
