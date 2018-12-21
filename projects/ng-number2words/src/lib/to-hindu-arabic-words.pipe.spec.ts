@@ -454,142 +454,222 @@ describe('ToHinduArabicWordsPipe', () => {
         });
       });
 
-      // describe('61 - 70', () => {
-      //   it('61 should be एकाउन्न', () => {
-      //     expect(pipe.transform(61, 'np')).toMatch('एकाउन्न');
-      //   });
-      //   it('62 should be बाउन्न', () => {
-      //     expect(pipe.transform(62, 'np')).toMatch('बाउन्न');
-      //   });
-      //   it('63 should be त्रिपन्न', () => {
-      //     expect(pipe.transform(63, 'np')).toMatch('त्रिपन्न');
-      //   });
-      //   it('64 should be चौवन्न', () => {
-      //     expect(pipe.transform(64, 'np')).toMatch('चौवन्न');
-      //   });
-      //   it('65 should be पचपन्न', () => {
-      //     expect(pipe.transform(65, 'np')).toMatch('पचपन्न');
-      //   });
-      //   it('66 should be छ्प्पन्न', () => {
-      //     expect(pipe.transform(66, 'np')).toMatch('छ्प्पन्न');
-      //   });
-      //   it('67 should be सन्ताउन्न', () => {
-      //     expect(pipe.transform(67, 'np')).toMatch('सन्ताउन्न');
-      //   });
-      //   it('68 should be अन्ठाउन्न', () => {
-      //     expect(pipe.transform(68, 'np')).toMatch('अन्ठाउन्न');
-      //   });
-      //   it('69 should be उनान्साठ्ठी', () => {
-      //     expect(pipe.transform(69, 'np')).toMatch('उनान्साठ्ठी');
-      //   });
-      //   it('70 should be साठ्ठी', () => {
-      //     expect(pipe.transform(70, 'np')).toMatch('साठ्ठी');
-      //   });
-      // });
+      describe('61 - 70', () => {
+        it('61 should be एकसट्ठी', () => {
+          expect(pipe.transform(61, 'np')).toMatch('एकसट्ठी');
+        });
+        it('62 should be बैसट्ठी', () => {
+          expect(pipe.transform(62, 'np')).toMatch('बैसट्ठी');
+        });
+        it('63 should be त्रिसट्ठी', () => {
+          expect(pipe.transform(63, 'np')).toMatch('त्रिसट्ठी');
+        });
+        it('64 should be चौंसठ्ठी', () => {
+          expect(pipe.transform(64, 'np')).toMatch('चौंसठ्ठी');
+        });
+        it('65 should be पैंसठ्ठी', () => {
+          expect(pipe.transform(65, 'np')).toMatch('पैंसठ्ठी');
+        });
+        it('66 should be छैंसठ्ठी', () => {
+          expect(pipe.transform(66, 'np')).toMatch('छैंसठ्ठी');
+        });
+        it('67 should be सर्सठ्ठी', () => {
+          expect(pipe.transform(67, 'np')).toMatch('सर्सठ्ठी');
+        });
+        it('68 should be अर्सठ्ठी', () => {
+          expect(pipe.transform(68, 'np')).toMatch('अर्सठ्ठी');
+        });
+        it('69 should be उनन्सत्तरी', () => {
+          expect(pipe.transform(69, 'np')).toMatch('उनन्सत्तरी');
+        });
+        it('70 should be सत्तरी', () => {
+          expect(pipe.transform(70, 'np')).toMatch('सत्तरी');
+        });
+      });
 
-      // describe('71 - 80', () => {
-      //   it('71 should be एकाउन्न', () => {
-      //     expect(pipe.transform(71, 'np')).toMatch('एकाउन्न');
-      //   });
-      //   it('72 should be बाउन्न', () => {
-      //     expect(pipe.transform(72, 'np')).toMatch('बाउन्न');
-      //   });
-      //   it('73 should be त्रिपन्न', () => {
-      //     expect(pipe.transform(73, 'np')).toMatch('त्रिपन्न');
-      //   });
-      //   it('74 should be चौवन्न', () => {
-      //     expect(pipe.transform(74, 'np')).toMatch('चौवन्न');
-      //   });
-      //   it('75 should be पचपन्न', () => {
-      //     expect(pipe.transform(75, 'np')).toMatch('पचपन्न');
-      //   });
-      //   it('76 should be छ्प्पन्न', () => {
-      //     expect(pipe.transform(76, 'np')).toMatch('छ्प्पन्न');
-      //   });
-      //   it('77 should be सन्ताउन्न', () => {
-      //     expect(pipe.transform(77, 'np')).toMatch('सन्ताउन्न');
-      //   });
-      //   it('78 should be अन्ठाउन्न', () => {
-      //     expect(pipe.transform(78, 'np')).toMatch('अन्ठाउन्न');
-      //   });
-      //   it('79 should be उनान्साठ्ठी', () => {
-      //     expect(pipe.transform(79, 'np')).toMatch('उनान्साठ्ठी');
-      //   });
-      //   it('80 should be साठ्ठी', () => {
-      //     expect(pipe.transform(80, 'np')).toMatch('साठ्ठी');
-      //   });
-      // });
+      describe('71 - 80', () => {
+        it('71 should be एकत्तर', () => {
+          expect(pipe.transform(71, 'np')).toMatch('एकत्तर');
+        });
+        it('72 should be बहत्तर', () => {
+          expect(pipe.transform(72, 'np')).toMatch('बहत्तर');
+        });
+        it('73 should be त्रीहत्तर', () => {
+          expect(pipe.transform(73, 'np')).toMatch('त्रीहत्तर');
+        });
+        it('74 should be चौरत्तर', () => {
+          expect(pipe.transform(74, 'np')).toMatch('चौरत्तर');
+        });
+        it('75 should be पचहत्तर', () => {
+          expect(pipe.transform(75, 'np')).toMatch('पचहत्तर');
+        });
+        it('76 should be छयत्तर', () => {
+          expect(pipe.transform(76, 'np')).toMatch('छयत्तर');
+        });
+        it('77 should be सतहत्तर', () => {
+          expect(pipe.transform(77, 'np')).toMatch('सतहत्तर');
+        });
+        it('78 should be अठहत्तर', () => {
+          expect(pipe.transform(78, 'np')).toMatch('अठहत्तर');
+        });
+        it('79 should be उनास्सी', () => {
+          expect(pipe.transform(79, 'np')).toMatch('उनास्सी');
+        });
+        it('80 should be अस्सी', () => {
+          expect(pipe.transform(80, 'np')).toMatch('अस्सी');
+        });
+      });
 
-      // describe('81 - 90', () => {
-      //   it('81 should be एकाउन्न', () => {
-      //     expect(pipe.transform(81, 'np')).toMatch('एकाउन्न');
-      //   });
-      //   it('82 should be बाउन्न', () => {
-      //     expect(pipe.transform(82, 'np')).toMatch('बाउन्न');
-      //   });
-      //   it('83 should be त्रिपन्न', () => {
-      //     expect(pipe.transform(83, 'np')).toMatch('त्रिपन्न');
-      //   });
-      //   it('84 should be चौवन्न', () => {
-      //     expect(pipe.transform(84, 'np')).toMatch('चौवन्न');
-      //   });
-      //   it('85 should be पचपन्न', () => {
-      //     expect(pipe.transform(85, 'np')).toMatch('पचपन्न');
-      //   });
-      //   it('86 should be छ्प्पन्न', () => {
-      //     expect(pipe.transform(86, 'np')).toMatch('छ्प्पन्न');
-      //   });
-      //   it('87 should be सन्ताउन्न', () => {
-      //     expect(pipe.transform(87, 'np')).toMatch('सन्ताउन्न');
-      //   });
-      //   it('88 should be अन्ठाउन्न', () => {
-      //     expect(pipe.transform(88, 'np')).toMatch('अन्ठाउन्न');
-      //   });
-      //   it('89 should be उनान्साठ्ठी', () => {
-      //     expect(pipe.transform(89, 'np')).toMatch('उनान्साठ्ठी');
-      //   });
-      //   it('90 should be साठ्ठी', () => {
-      //     expect(pipe.transform(90, 'np')).toMatch('साठ्ठी');
-      //   });
-      // });
+      describe('81 - 90', () => {
+        it('81 should be एकास्सी', () => {
+          expect(pipe.transform(81, 'np')).toMatch('एकास्सी');
+        });
+        it('82 should be बयास्सी', () => {
+          expect(pipe.transform(82, 'np')).toMatch('बयास्सी');
+        });
+        it('83 should be त्रियास्सी', () => {
+          expect(pipe.transform(83, 'np')).toMatch('त्रियास्सी');
+        });
+        it('84 should be चैरस्सी', () => {
+          expect(pipe.transform(84, 'np')).toMatch('चैरस्सी');
+        });
+        it('85 should be पचास्सी', () => {
+          expect(pipe.transform(85, 'np')).toMatch('पचास्सी');
+        });
+        it('86 should be छायास्सी', () => {
+          expect(pipe.transform(86, 'np')).toMatch('छायास्सी');
+        });
+        it('87 should be सत्तास्सी', () => {
+          expect(pipe.transform(87, 'np')).toMatch('सत्तास्सी');
+        });
+        it('88 should be अठास्सी', () => {
+          expect(pipe.transform(88, 'np')).toMatch('अठास्सी');
+        });
+        it('89 should be उनन्नाब्बे', () => {
+          expect(pipe.transform(89, 'np')).toMatch('उनन्नाब्बे');
+        });
+        it('90 should be नब्बे', () => {
+          expect(pipe.transform(90, 'np')).toMatch('नब्बे');
+        });
+      });
 
-      // describe('91 - 100', () => {
-      //   it('91 should be एकाउन्न', () => {
-      //     expect(pipe.transform(91, 'np')).toMatch('एकाउन्न');
-      //   });
-      //   it('92 should be बाउन्न', () => {
-      //     expect(pipe.transform(92, 'np')).toMatch('बाउन्न');
-      //   });
-      //   it('93 should be त्रिपन्न', () => {
-      //     expect(pipe.transform(93, 'np')).toMatch('त्रिपन्न');
-      //   });
-      //   it('94 should be चौवन्न', () => {
-      //     expect(pipe.transform(94, 'np')).toMatch('चौवन्न');
-      //   });
-      //   it('95 should be पचपन्न', () => {
-      //     expect(pipe.transform(95, 'np')).toMatch('पचपन्न');
-      //   });
-      //   it('96 should be छ्प्पन्न', () => {
-      //     expect(pipe.transform(96, 'np')).toMatch('छ्प्पन्न');
-      //   });
-      //   it('97 should be सन्ताउन्न', () => {
-      //     expect(pipe.transform(97, 'np')).toMatch('सन्ताउन्न');
-      //   });
-      //   it('98 should be अन्ठाउन्न', () => {
-      //     expect(pipe.transform(98, 'np')).toMatch('अन्ठाउन्न');
-      //   });
-      //   it('99 should be उनान्साठ्ठी', () => {
-      //     expect(pipe.transform(99, 'np')).toMatch('उनान्साठ्ठी');
-      //   });
-      //   it('100 should be साठ्ठी', () => {
-      //     expect(pipe.transform(100, 'np')).toMatch('साठ्ठी');
-      //   });
-      // });
+      describe('91 - 100', () => {
+        it('91 should be एकान्नब्बे', () => {
+          expect(pipe.transform(91, 'np')).toMatch('एकान्नब्बे');
+        });
+        it('92 should be बयान्नब्बे', () => {
+          expect(pipe.transform(92, 'np')).toMatch('बयान्नब्बे');
+        });
+        it('93 should be त्रियान्नब्बे', () => {
+          expect(pipe.transform(93, 'np')).toMatch('त्रियान्नब्बे');
+        });
+        it('94 should be चौरान्नब्बे', () => {
+          expect(pipe.transform(94, 'np')).toMatch('चौरान्नब्बे');
+        });
+        it('95 should be पन्चान्नब्बे', () => {
+          expect(pipe.transform(95, 'np')).toMatch('पन्चान्नब्बे');
+        });
+        it('96 should be छायान्नब्बे', () => {
+          expect(pipe.transform(96, 'np')).toMatch('छायान्नब्बे');
+        });
+        it('97 should be सन्तान्नब्बे', () => {
+          expect(pipe.transform(97, 'np')).toMatch('सन्तान्नब्बे');
+        });
+        it('98 should be अन्ठान्नब्बे', () => {
+          expect(pipe.transform(98, 'np')).toMatch('अन्ठान्नब्बे');
+        });
+        it('99 should be उनन्सय', () => {
+          expect(pipe.transform(99, 'np')).toMatch('उनन्सय');
+        });
+        it('100 should be एक सय', () => {
+          expect(pipe.transform(100, 'np')).toMatch('एक सय');
+        });
+      });
 
       describe('100 - 999', () => {
         it('121 should be एक सय एक्काइस', () => {
           expect(pipe.transform(121, 'np')).toMatch('एक सय एक्काइस');
         });
+        it('257 should be दुई सय सन्ताउन्न', () => {
+          expect(pipe.transform(257, 'np')).toMatch('दुई सय सन्ताउन्न');
+        });
+        it('382 should be तीन सय बयास्सी', () => {
+          expect(pipe.transform(382, 'np')).toMatch('तीन सय बयास्सी');
+        });
+        it('495 should be चार सय पन्चान्नब्बे', () => {
+          expect(pipe.transform(495, 'np')).toMatch('चार सय पन्चान्नब्बे');
+        });
+        it('572 should be पाँच सय बहत्तर', () => {
+          expect(pipe.transform(572, 'np')).toMatch('पाँच सय बहत्तर');
+        });
+        it('690 should be छ सय नब्बे', () => {
+          expect(pipe.transform(690, 'np')).toMatch('छ सय नब्बे');
+        });
+        it('765 should be सात सय पैंसठ्ठी', () => {
+          expect(pipe.transform(765, 'np')).toMatch('सात सय पैंसठ्ठी');
+        });
+        it('878 should be आठ सय अठहत्तर', () => {
+          expect(pipe.transform(878, 'np')).toMatch('आठ सय अठहत्तर');
+        });
+        it('999 should be नौ सय उनन्सय', () => {
+          expect(pipe.transform(999, 'np')).toMatch('नौ सय उनन्सय');
+        });
+      });
+
+      describe('thousand to lakh', () => {
+        it('1243 should be एक हजार दुई सय त्रिचालीस', () => {
+          expect(pipe.transform(1243, 'np')).toMatch('एक हजार दुई सय त्रिचालीस');
+        });
+
+        it('3756 should be तीन हजार सात सय छ्प्पन्न', () => {
+          expect(pipe.transform(3756, 'np')).toMatch('तीन हजार सात सय छ्प्पन्न');
+        });
+
+        it('57432 should be सन्ताउन्न हजार चार सय बत्तीस', () => {
+          expect(pipe.transform(57432, 'np')).toMatch('सन्ताउन्न हजार चार सय बत्तीस');
+        });
+
+        it('987654 should be नौ लाख सत्तास्सी हजार छ सय चौवन्न', () => {
+          expect(pipe.transform(987654, 'np'))
+            .toMatch('नौ लाख सत्तास्सी हजार छ सय चौवन्न');
+        });
+      });
+
+      describe('lakh to crore', () => {
+        it('1000003 should be दश लाख तीन', () => {
+          expect(pipe.transform(1000003, 'np')).toMatch('दश लाख तीन');
+        });
+
+        it('13800264 should be एक करोड अर्तीस लाख दुई सय चौंसठ्ठी', () => {
+          expect(pipe.transform(13800264, 'np'))
+            .toMatch('एक करोड अर्तीस लाख दुई सय चौंसठ्ठी');
+        });
+
+        it('999999999 should be उनन्सय करोड उनन्सय लाख उनन्सय हजार नौ सय उनन्सय', () => {
+          expect(pipe.transform(999999999, 'np')).toMatch('उनन्सय करोड उनन्सय लाख उनन्सय हजार नौ सय उनन्सय');
+        });
+      });
+
+      describe('arab to kharab', () => {
+        it('1234567089 should be एक अर्ब त्येइस करोड पैंतालीस लाख सर्सठ्ठी हजार उनन्नाब्बे', () => {
+          expect(pipe.transform(1234567089, 'np')).toMatch('एक अर्ब त्येइस करोड पैंतालीस लाख सर्सठ्ठी हजार उनन्नाब्बे');
+        });
+
+        it('14600728195 should be चौध अर्ब साठ्ठी करोड सात लाख अठ्ठाइस हजार एक सय पन्चान्नब्बे', () => {
+          expect(pipe.transform(14600728195, 'np')).toMatch('चौध अर्ब साठ्ठी करोड सात लाख अठ्ठाइस हजार एक सय पन्चान्नब्बे');
+        });
+
+        it('999999999999 should be नौ खर्ब उनन्सय अर्ब उनन्सय करोड उनन्सय लाख उनन्सय हजार नौ सय उनन्सय', () => {
+          expect(pipe.transform(999999999999, 'np')).toMatch('नौ खर्ब उनन्सय अर्ब उनन्सय करोड उनन्सय लाख उनन्सय हजार नौ सय उनन्सय');
+        });
+
+        it('8765432109876 should be सत्तास्सी खर्ब पैंसठ्ठी अर्ब त्रिचालीस करोड एक्काइस लाख नौ हजार आठ सय छयत्तर', () => {
+          expect(pipe.transform(8765432109876, 'np'))
+            .toMatch('सत्तास्सी खर्ब पैंसठ्ठी अर्ब त्रिचालीस करोड एक्काइस लाख नौ हजार आठ सय छयत्तर');
+        });
+
+      it(`10000000000000 should be empty`, () => {
+        expect(pipe.transform(10000000000000, 'np')).toMatch('');
       });
 
     });
