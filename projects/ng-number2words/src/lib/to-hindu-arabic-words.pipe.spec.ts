@@ -251,6 +251,20 @@ describe('ToHinduArabicWordsPipe', () => {
     });
   });
 
+  describe('decimal inputs', () => {
+    it('should output one point one two three', () => {
+      expect(pipe.transform(1.123)).toMatch('one point one two three');
+    });
+
+    it('should output two point four five six', () => {
+      expect(pipe.transform(2.456)).toMatch('two point four five six');
+    });
+
+    it('should output five point zero nine eight seven', () => {
+      expect(pipe.transform(5.0987)).toMatch('five point zero nine eight seven');
+    });
+  });
+
   describe('Language', () => {
     describe('NP', () => {
       describe('0 - 10', () => {
@@ -669,6 +683,20 @@ describe('ToHinduArabicWordsPipe', () => {
         });
         it('10000000000000 should be empty', () => {
           expect(pipe.transform(10000000000000, 'np')).toMatch('');
+        });
+      });
+
+      describe('decimal inputs', () => {
+        it('should output छ दशमलब एक दुई तीन', () => {
+          expect(pipe.transform(6.123, 'np')).toMatch('छ दशमलब एक दुई तीन');
+        });
+
+        it('should output दुई दशमलब चार पाँच छ', () => {
+          expect(pipe.transform(2.456, 'np')).toMatch('दुई दशमलब चार पाँच छ');
+        });
+
+        it('should output पाँच दशमलब शून्य नौ आठ सात', () => {
+          expect(pipe.transform(5.0987, 'np')).toMatch('पाँच दशमलब शून्य नौ आठ सात');
         });
       });
     });

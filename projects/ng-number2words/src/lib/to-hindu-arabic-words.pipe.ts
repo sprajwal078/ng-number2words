@@ -1,7 +1,7 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import { WordValues, SUB_TWENTIES_MAPPING, TENTH_MAPPING } from './hindu-arabic-word-map';
 import { MinMax } from './types';
-import { SUB_HUNDRED_NP, TENTH_MAPPING_NP } from './language-mapping/nepali';
+import { SUB_HUNDRED_NP, TENTH_MAPPING_NP, OtherWordsNp } from './language-mapping/nepali';
 
 @Pipe({
   name: 'toHinduArabicWords'
@@ -82,9 +82,15 @@ export class ToHinduArabicWordsPipe implements PipeTransform {
     }
     let words: string[] = [];
     if (language === 'en') {
-      words = this.convertToWord(value);
+      words = this.convertToWord(Math.floor(value));
     } else {
-      words = this.convertToLanguage(value, language);
+      words = this.convertToLanguage(Math.floor(value), language);
+    }
+    // convert decimal points
+    const decimal = /\.\d+/.exec('' + value);
+    if (decimal) {
+      // the decimal value is stored at the 0 position of the result
+      words.push(...this.convertDecimalToWords(decimal[0], language));
     }
     return words.join(' ');
   }
@@ -114,7 +120,7 @@ export class ToHinduArabicWordsPipe implements PipeTransform {
 
     for (const minMax of this.ranges) {
       if (number >= minMax.min && number < minMax.max) {
-        const prefix = this.convertToWord(+Math.floor((number / minMax.min)).toFixed());
+        const prefix = this.convertToWord(Math.floor(number / minMax.min));
         words.push(...prefix, TENTH_MAPPING[minMax.min]);
         return this.convertToWord(number % minMax.min, words, true);
       }
@@ -140,7 +146,7 @@ export class ToHinduArabicWordsPipe implements PipeTransform {
       return [];
     }
     if (value < 0) {
-      words.push('माइनस');
+      words.push(OtherWordsNp.minus);
       return this.convertToWord(Math.abs(value), words);
     }
     if (value < 100) {
@@ -151,12 +157,32 @@ export class ToHinduArabicWordsPipe implements PipeTransform {
     }
     for (const minMax of this.ranges) {
       if (value >= minMax.min && value < minMax.max) {
-        const prefix = this.convertToNepali(+Math.floor((value / minMax.min)).toFixed());
+        const prefix = this.convertToNepali(Math.floor(value / minMax.min));
         words.push(...prefix, TENTH_MAPPING_NP[minMax.min]);
         return this.convertToNepali(value % minMax.min, words, true);
       }
     }
     return words;
+  }
+
+  convertDecimalToWords(decimal: string, language: string): string[] {
+    const decimalValues = decimal.split('');
+    const pointMapping = {
+      en: 'point',
+      np: OtherWordsNp.point
+    };
+    return decimalValues.map(dec => {
+      if (dec === '.') {
+        return pointMapping[language];
+      }
+      switch (language) {
+        default:
+          // en
+          return SUB_TWENTIES_MAPPING[dec];
+        case 'np':
+          return SUB_HUNDRED_NP[dec];
+      }
+    });
   }
 
 }

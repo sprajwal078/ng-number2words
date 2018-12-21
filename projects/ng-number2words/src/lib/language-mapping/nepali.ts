@@ -31,3 +31,8 @@ export const TENTH_MAPPING_NP: any = {
   1000000000:   'अर्ब',
   100000000000: 'खर्ब'
 };
+
+export enum OtherWordsNp {
+  minus = 'माइनस',
+  point = 'दशमलब'
+}
