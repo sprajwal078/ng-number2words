@@ -260,6 +260,45 @@ const TENTH_MAPPING$1 = {
  * @fileoverview added by tsickle
  * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
+/** @type {?} */
+const SUB_HUNDRED_NP = [
+    // 0 - 10
+    'शून्य', 'एक', 'दुई', 'तीन', 'चार', 'पाँच', 'छ', 'सात', 'आठ', 'नौ', 'दश',
+    // 11 - 20
+    'एघार', 'बाह्र', 'तेह्र', 'चौध', 'पन्ध्र', 'सोह्र', 'सत्र', 'अठार', 'उन्नाइस', 'बीस',
+    // 21 - 30उनन्तिस
+    'एक्काइस', 'बाइस', 'त्येइस', 'चौबीस', 'पच्चीस', 'छब्बीस', 'सत्ताइस', 'अठ्ठाइस', 'उनन्तीस', 'तीस',
+    // 31 - 40
+    'एक्तीस', 'बत्तीस', 'तेत्तिस', 'चौंतीस', 'पैंतीस', 'छत्तीस', 'सर्तीस', 'अर्तीस', 'उनन्चालीस', 'चालीस',
+    // 41 - 50
+    'एकचालीस', 'बयालीस', 'त्रिचालीस', 'चवालीस', 'पैंतालीस', 'छयालीस', 'सर्चालीस', 'अर्चालीस', 'उनन्चास', 'पचास',
+    // 51 - 60
+    'एकाउन्न', 'बाउन्न', 'त्रिपन्न', 'चौवन्न', 'पचपन्न', 'छ्प्पन्न', 'सन्ताउन्न', 'अन्ठाउन्न', 'उनान्साठ्ठी', 'साठ्ठी',
+    // 61 - 70
+    'एकसट्ठी', 'बैसट्ठी', 'त्रिसट्ठी', 'चौंसठ्ठी', 'पैंसठ्ठी', 'छैंसठ्ठी', 'सर्सठ्ठी', 'अर्सठ्ठी', 'उनन्सत्तरी', 'सत्तरी',
+    // 71 - 80
+    'एकत्तर', 'बहत्तर', 'त्रीहत्तर', 'चौरत्तर', 'पचहत्तर', 'छयत्तर', 'सतहत्तर', 'अठहत्तर', 'उनास्सी', 'अस्सी',
+    // 81 - 90
+    'एकास्सी', 'बयास्सी', 'त्रियास्सी', 'चैरस्सी', 'पचास्सी', 'छायास्सी', 'सत्तास्सी', 'अठास्सी', 'उनन्नाब्बे', 'नब्बे',
+    // 91 - 99
+    'एकान्नब्बे', 'बयान्नब्बे', 'त्रियान्नब्बे', 'चौरान्नब्बे', 'पन्चान्नब्बे', 'छायान्नब्बे', 'सन्तान्नब्बे', 'अन्ठान्नब्बे', 'उनन्सय'
+];
+/** @type {?} */
+const TENTH_MAPPING_NP = {
+    1: 'एक',
+    10: 'दश',
+    100: 'सय',
+    1000: 'हजार',
+    100000: 'लाख',
+    10000000: 'करोड',
+    1000000000: 'अर्ब',
+    100000000000: 'खर्ब'
+};
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
 class ToHinduArabicWordsPipe {
     constructor() {
         this.subHundredRanges = [
@@ -325,9 +364,10 @@ class ToHinduArabicWordsPipe {
     }
     /**
      * @param {?} value
+     * @param {?=} language
      * @return {?}
      */
-    transform(value) {
+    transform(value, language = 'en') {
         if (typeof (value) !== 'number') {
             if (isNaN(+value)) {
                 console.error(`value not number: ${value} is not a number. Please ensure the value is a number`);
@@ -337,16 +377,23 @@ class ToHinduArabicWordsPipe {
             value = +value;
         }
         /** @type {?} */
-        const words = this.convertToWord(value);
+        let words = [];
+        if (language === 'en') {
+            words = this.convertToWord(value);
+        }
+        else {
+            words = this.convertToLanguage(value, language);
+        }
         return words.join(' ');
     }
     /**
      * @param {?} number
      * @param {?=} words
      * @param {?=} ignoreZero
+     * @param {?=} lang
      * @return {?}
      */
-    convertToWord(number, words = [], ignoreZero = false) {
+    convertToWord(number, words = [], ignoreZero = false, lang = 'en') {
         if (number > (100 * WordValues$1.kharab)) {
             console.error(`value not supported: ${number} exceeds the max value which is 999 trillion`);
             return [];
@@ -386,6 +433,48 @@ class ToHinduArabicWordsPipe {
         /** @type {?} */
         const reminder = value % number;
         return reminder ? [TENTH_MAPPING$1[number], SUB_TWENTIES_MAPPING$1[reminder]] : [TENTH_MAPPING$1[number]];
+    }
+    /**
+     * @param {?} value
+     * @param {?} lang
+     * @return {?}
+     */
+    convertToLanguage(value, lang) {
+        switch (lang) {
+            case 'np':
+                return this.convertToNepali(value);
+        }
+    }
+    /**
+     * @param {?} value
+     * @param {?=} words
+     * @param {?=} ignoreZero
+     * @return {?}
+     */
+    convertToNepali(value, words = [], ignoreZero = false) {
+        if (value > (100 * WordValues$1.kharab)) {
+            console.error(`value not supported: ${value} exceeds the max value which is 999 trillion`);
+            return [];
+        }
+        if (value < 0) {
+            words.push('माइनस');
+            return this.convertToWord(Math.abs(value), words);
+        }
+        if (value < 100) {
+            if (value === 0 && ignoreZero) {
+                return words;
+            }
+            words.push(SUB_HUNDRED_NP[value]);
+        }
+        for (const minMax of this.ranges) {
+            if (value >= minMax.min && value < minMax.max) {
+                /** @type {?} */
+                const prefix = this.convertToNepali(+Math.floor((value / minMax.min)).toFixed());
+                words.push(...prefix, TENTH_MAPPING_NP[minMax.min]);
+                return this.convertToNepali(value % minMax.min, words, true);
+            }
+        }
+        return words;
     }
 }
 ToHinduArabicWordsPipe.decorators = [

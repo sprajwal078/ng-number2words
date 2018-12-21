@@ -17,7 +17,11 @@
     "number",
     "words",
     "string",
-    "pipe"
+    "pipe",
+    "number to words",
+    "number to string",
+    "nepali",
+    "hindu arabic"
   ],
   "main": "bundles/ng-number2words.umd.js",
   "module": "fesm5/ng-number2words.js",
