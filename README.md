@@ -6,6 +6,9 @@ Angular pipe to convert number into words.
 npm install ng-number2words
 ```
 
+## Demo
+https://sprajwal078.github.io/ng-number2words/
+
 ## Usage
 Import the NgNumber2wordsModule in your **app.module.ts**
 
