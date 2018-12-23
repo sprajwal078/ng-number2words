@@ -1,0 +1,39 @@
+{
+  "name": "ng-number2words",
+  "description": "Angular pipe that converts number to words",
+  "author": "Prajwal Simkhada",
+  "version": "1.0.1",
+  "peerDependencies": {
+    "@angular/common": "^7.0.0",
+    "@angular/core": "^7.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sprajwal078/ng-number2words"
+  },
+  "license": "MIT",
+  "keywords": [
+    "angular",
+    "number",
+    "words",
+    "string",
+    "pipe",
+    "number to words",
+    "number to string",
+    "nepali",
+    "hindu arabic"
+  ],
+  "main": "bundles/ng-number2words.umd.js",
+  "module": "fesm5/ng-number2words.js",
+  "es2015": "fesm2015/ng-number2words.js",
+  "esm5": "esm5/ng-number2words.js",
+  "esm2015": "esm2015/ng-number2words.js",
+  "fesm5": "fesm5/ng-number2words.js",
+  "fesm2015": "fesm2015/ng-number2words.js",
+  "typings": "ng-number2words.d.ts",
+  "metadata": "ng-number2words.metadata.json",
+  "sideEffects": false,
+  "dependencies": {
+    "tslib": "^1.9.0"
+  }
+}
