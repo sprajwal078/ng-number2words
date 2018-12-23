@@ -6,10 +6,30 @@ describe('ToHinduArabicWordsPipe', () => {
     expect(pipe).toBeTruthy();
   });
 
-  describe('sub 20s', () => {
+  describe('falsy values', () => {
+    it('null should be empty', () => {
+      expect(pipe.transform(null)).toMatch('');
+    });
+
+    it('undefined should be empty', () => {
+      expect(pipe.transform(undefined)).toMatch('');
+    });
+
+    it('false should be empty', () => {
+      expect(pipe.transform(false)).toMatch('');
+    });
+
+    it('\'\' should be empty', () => {
+      expect(pipe.transform('')).toMatch('');
+    });
+
     it('0 should be zero', () => {
       expect(pipe.transform(0)).toMatch('zero');
     });
+  });
+
+
+  describe('sub 20s', () => {
 
     it('1 should be one', () => {
       expect(pipe.transform(1)).toMatch('one');

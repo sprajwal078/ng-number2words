@@ -17,7 +17,7 @@ export class ConverterUtil {
     decimalNotation = 'point',
     negativeNotation = 'minus'
   ) {
-    if (typeof (value) !== 'number') {
+    if (typeof (value) === 'string') {
       if (isNaN(+value)) {
         console.error(`value not number: ${value} is not a number. Please ensure the value is a number`);
       }
@@ -27,8 +27,8 @@ export class ConverterUtil {
       console.error(`value not supported: ${value} exceeds the max value`);
     }
     this.value = value;
-    console.log('current value is', value);
     if ((this.value || this.value === 0) && value <= max) {
+      value = +value;
       this.tenthMapping = tenthMapping;
       this.subHundredMapping = subHundredMapping;
       this.maxValue = max;
@@ -52,7 +52,7 @@ export class ConverterUtil {
   }
 
   convertToWords(value: number | null): string[] {
-    if (value === null) {
+    if (value === null || value === undefined) {
       return [];
     }
     // to convert the number to words we first check if the number is below 100
