@@ -4,7 +4,8 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve -o",
-    "build": "ng build",
+    "build": "ng build --prod https://sprajwal078.github.io/ng-number2words/",
+    "deploy-gh": "ngh --dir ./dist/ng-number2word-demo",
     "build-lib": "ng build ng-number2words",
     "copy-readme": "cpx README.MD ./dist/ng-number2words",
     "npm-pack": "cd dist/ng-number2words && npm pack",
