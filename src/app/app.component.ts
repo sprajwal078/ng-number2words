@@ -6,4 +6,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+  value = 96749372;
+  language = 'en';
+  system = 'international';
 }

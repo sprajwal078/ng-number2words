@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { NgNumber2wordsModule } from 'ng-number2words';
@@ -10,7 +11,8 @@ import { NgNumber2wordsModule } from 'ng-number2words';
   ],
   imports: [
     BrowserModule,
-    NgNumber2wordsModule
+    NgNumber2wordsModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
