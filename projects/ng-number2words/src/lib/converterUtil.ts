@@ -8,6 +8,8 @@ export class ConverterUtil {
   subHundredMapping: any;
   decimalNotation: string;
   negativeNotation: string;
+  skipPrefix: boolean;
+  isHundredIncluded: boolean; // 100 included inside sub100 mapping or not
 
   constructor(
     value: number | string,
@@ -15,13 +17,17 @@ export class ConverterUtil {
     subHundredMapping: any = WORD_MAPPING.international.en.subHundreds,
     max: number = (1000 * WordValues.trillion - 1),
     decimalNotation = 'point',
-    negativeNotation = 'minus'
+    negativeNotation = 'minus',
+    skipPrefix = false,
+    isHundredIncluded = false
   ) {
     if (typeof (value) === 'string') {
-      if (isNaN(+value)) {
+      if (value !== '' && isNaN(+value)) {
         console.error(`value not number: ${value} is not a number. Please ensure the value is a number`);
       }
-      value = +value;
+      if (value !== '') {
+        value = +value;
+      }
     }
     if (value > max) {
       console.error(`value not supported: ${value} exceeds the max value`);
@@ -34,6 +40,8 @@ export class ConverterUtil {
       this.maxValue = max;
       this.decimalNotation = decimalNotation;
       this.negativeNotation = negativeNotation;
+      this.skipPrefix = skipPrefix;
+      this.isHundredIncluded = isHundredIncluded;
       const isNegative = value < 0;
       //  deal with negative number
       if (isNegative) {
@@ -57,7 +65,9 @@ export class ConverterUtil {
     }
     // to convert the number to words we first check if the number is below 100
     //  if below 100 then simply use the convertSubHundredToWords() and set wordsValue
-    if (value < 100) {
+    //  also check if 100 is included as part of sub hundred mapping
+    //  if included, show the 100 from the subHundredMapping, else show from tenthMapping
+    if ((!this.isHundredIncluded && value < 100) || (this.isHundredIncluded && value <= 100)) {
       return this.convertSubHundredToWords(value);
     }
     //  if the value is over 99 we first find the length of the string of the value
@@ -86,6 +96,9 @@ export class ConverterUtil {
     const numberof0s = /0+/.exec(pow10.toString())[0].length;
     const prefix = value.toString().slice(0, length - numberof0s);
     const suffix = +value.toString().slice(-numberof0s);
+    if (this.skipPrefix) {
+      return [category, ...this.convertToWords(suffix ? suffix : null)];
+    }
     return [...this.convertToWords(+prefix), category, ...this.convertToWords(suffix ? suffix : null)];
   }
 
