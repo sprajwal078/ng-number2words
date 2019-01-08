@@ -21,9 +21,10 @@
 
             <div class="from-group ml-3">
               <label for="language" class="justify-content-start">Language</label>
-              <select id="language" type="number" class="form-control" [(ngModel)]="language" [disabled]="system !== 'hinduArabic'">
+              <select id="language" type="number" class="form-control" [(ngModel)]="language">
                 <option value="en">English</option>
-                <option value="np">Nepali</option>
+                <option value="es" *ngIf="system === 'international'">Spanish</option>
+                <option value="np" *ngIf="system !== 'international'">Nepali</option>
               </select>
             </div>
           </div>
@@ -35,7 +36,7 @@
             &lt;div&gt;
               <span>{{</span>
                 {{value}} | {{system === 'international' ? 'toWords' : 'toHinduArabicWords'}}
-                <span *ngIf="language!=='en'">: {{language}} </span>
+                <span *ngIf="language!=='en'">: '{{language}}' </span>
               <span>}}</span>
             &lt;/div&gt;
           </samp>
@@ -46,7 +47,7 @@
           </div>
           <code>
             <span *ngIf="system === 'international'; else hinduArabic">
-              {{value | toWords}}
+              {{value | toWords: language}}
             </span>
             <ng-template #hinduArabic>
               {{value | toHinduArabicWords: language}}
