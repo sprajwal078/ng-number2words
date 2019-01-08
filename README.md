@@ -34,39 +34,49 @@ then use `toWords` pipe wherever required
 ```html
 <div>{{14600728195 | toWords}}</div>
 ```
-will output
+will output:\
 `fourteen billion six hundred million seven hundred twenty eight thousand one hundred ninety five`
 
 ```html
 <div>{{12.32 | toWords}}</div>
 ```
-will output
+will output:\
 `twelve point three two`
+
+## Language Support
+Supported Languages:
+- Spanish
+```html
+<div>{{97545678849 | toWords : 'es'}}</div>
+```
+will output:\
+`noventa y siete mil quinientos cuarenta y cinco millones seiscientos setenta y ocho mil ochocientos cuarenta y nueve`
 
 ## Hindu-Arabic System
 ```html
 <div>{{235678943226 | toHinduArabicWords}}</div>
 ```
-will output
+will output:\
 `two kharab thirty five arab sixty seven crore eighty nine lakh forty three thousand two hundred twenty six`
 
 ### Hindu Arabic - Language Support
-Currently only Nepali language is supported. This is because Nepali is my native language and I am familiar with the Nepalese writing and number system. Please feel free to contrubute to this project to support a language of your choice or provide me some info by creating a feature request issue.
+Languages Supported:
+- Nepali
 ```html
 <div>{{14600728195 | toHinduArabicWords: 'np'}}</div>
 ```
-will output
+will output:\
 `चौध अर्ब साठ्ठी करोड सात लाख अठ्ठाइस हजार एक सय पन्चान्नब्बे`
 
 ```html
 <div>{{26.54 | toHinduArabicWords: 'np'}}</div>
 ```
-will output
+will output:\
 `छब्बीस दशमलब पाँच चार`
 
 ## TODO
-- Enable support additional languages
-- Enable currency conversion
+- Enable additional languages support
+- Enable currency style display
 
 ## Note
 This project is build using angular library generator. You can find the source files for the module in `/projects/ng-number2words`
