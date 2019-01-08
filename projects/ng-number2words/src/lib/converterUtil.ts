@@ -8,18 +8,22 @@ export class ConverterUtil {
   subHundredMapping: any;
   decimalNotation: string;
   negativeNotation: string;
-  skipPrefix: boolean;
+  skipPrefixMaxValue: number | boolean | undefined;
   isHundredIncluded: boolean; // 100 included inside sub100 mapping or not
+  tenthMappingPlural: any; // plural form of tenth mapping
+  exceptionReplacer: Function; // replaces exceptional words
 
   constructor(
     value: number | string,
     tenthMapping: any = WORD_MAPPING.international.en.tenths,
+    tenthMappingPlural: any = null,
     subHundredMapping: any = WORD_MAPPING.international.en.subHundreds,
     max: number = (1000 * WordValues.trillion - 1),
     decimalNotation = 'point',
     negativeNotation = 'minus',
-    skipPrefix = false,
-    isHundredIncluded = false
+    skipPrefixMaxValue = false,
+    isHundredIncluded = false,
+    exceptionReplacer: Function = (word) => word,
   ) {
     if (typeof (value) === 'string') {
       if (value !== '' && isNaN(+value)) {
@@ -40,8 +44,10 @@ export class ConverterUtil {
       this.maxValue = max;
       this.decimalNotation = decimalNotation;
       this.negativeNotation = negativeNotation;
-      this.skipPrefix = skipPrefix;
+      this.skipPrefixMaxValue = skipPrefixMaxValue;
       this.isHundredIncluded = isHundredIncluded;
+      this.tenthMappingPlural = tenthMappingPlural;
+      this.exceptionReplacer = exceptionReplacer;
       const isNegative = value < 0;
       //  deal with negative number
       if (isNegative) {
@@ -94,12 +100,23 @@ export class ConverterUtil {
     // eg if value is 12340, pow10 is 1000, so we want to separae 12 and 34o so we can make it 'twelve' 'thousand'
     // we could divide the number by the pow10 but for numbers like 1230, the 0 is lost during the operation
     const numberof0s = /0+/.exec(pow10.toString())[0].length;
-    const prefix = value.toString().slice(0, length - numberof0s);
+    const prefix = +value.toString().slice(0, length - numberof0s);
     const suffix = +value.toString().slice(-numberof0s);
-    if (this.skipPrefix) {
-      return [category, ...this.convertToWords(suffix ? suffix : null)];
+    if (this.skipPrefixMaxValue && value < this.skipPrefixMaxValue) {
+      // the cateogryWithoutPrefix can be a different number which falls under a certain category
+      // but has a different value. eg 200 in spanish
+      // 200 falls under the 100s caegory but it has a different name than 100
+      // so we make sure that we have the prefix which is 2 multiplied by 100 to get 200
+      const categoryWithoutPrefix = this.tenthMapping[pow10 * prefix];
+      return [categoryWithoutPrefix, ...this.convertToWords(suffix ? suffix : null)];
     }
-    return [...this.convertToWords(+prefix), category, ...this.convertToWords(suffix ? suffix : null)];
+    // if there is plural form of tenth mapping and the prefix is greater than 1
+    // the category needs to show the plural form, eg, 1 million in spanish = un millón
+    // but more than 1 million, eg 2 million is dos millones
+    if (prefix > 1 && this.tenthMappingPlural && this.tenthMappingPlural[pow10]) {
+      category = this.tenthMappingPlural[pow10];
+    }
+    return [...this.convertToWords(prefix), category, ...this.convertToWords(suffix ? suffix : null)];
   }
 
   convertSubHundredToWords(value: number): string[] {
@@ -128,6 +145,7 @@ export class ConverterUtil {
   }
 
   getWords() {
-    return this.words.filter(word => !!word).join(' ');
+    const words = this.words.filter(word => !!word).join(' ');
+    return this.exceptionReplacer ? this.exceptionReplacer(words) : words;
   }
 }

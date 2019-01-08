@@ -11,12 +11,14 @@ export class ToWordsPipe implements PipeTransform {
     const converter = new ConverterUtil(
       value,
       WORD_MAPPING.international[language].tenths,
+      WORD_MAPPING.international[language].tenthsPlural,
       WORD_MAPPING.international[language].subHundreds,
       (1000 * WordValues.trillion - 1),
       WORD_MAPPING.international[language].decimalWord,
       WORD_MAPPING.international[language].negativeWord,
-      WORD_MAPPING.international[language].suffix,
-      language === 'es'
+      WORD_MAPPING.international[language].skipPrefixMaxValue,
+      language === 'es',
+      WORD_MAPPING.international[language].exceptionReplacer
     );
     return converter.getWords();
   }

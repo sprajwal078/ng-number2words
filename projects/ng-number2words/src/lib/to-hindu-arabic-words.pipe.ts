@@ -11,6 +11,7 @@ export class ToHinduArabicWordsPipe implements PipeTransform {
     const converter = new ConverterUtil(
       value,
       WORD_MAPPING.hinduArabic[language].tenths,
+      null, // plural mapping is not present for hindu arabic system
       WORD_MAPPING.hinduArabic[language].subHundreds,
       (100 * WordValues.kharab - 1),
       WORD_MAPPING.hinduArabic[language].decimalWord,

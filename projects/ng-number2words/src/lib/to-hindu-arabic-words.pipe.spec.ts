@@ -6,7 +6,7 @@ describe('ToHinduArabicWordsPipe', () => {
     expect(pipe).toBeTruthy();
   });
 
-  describe('falsy valuess', () => {
+  describe('falsy values', () => {
     it('null should be empty', () => {
       expect(pipe.transform(null)).toBe('');
     });
