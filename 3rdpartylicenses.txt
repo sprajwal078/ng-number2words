@@ -266,9 +266,6 @@ Apache-2.0
 @angular/core
 MIT
 
-ng-number2words
-MIT
-
 @angular/common
 MIT
 
@@ -276,6 +273,9 @@ MIT
 MIT
 
 @angular/forms
+MIT
+
+ng-number2words
 MIT
 
 zone.js
